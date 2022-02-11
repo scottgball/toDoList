@@ -1,0 +1,28 @@
+#topBar {
+  border: 5px solid red;
+  grid-area: topBar;
+}
+
+#sideBar {
+  border: 5px solid blue;
+  grid-area: sideBar;
+}
+
+#content {
+  border: 5px solid Green;
+  grid-area: content;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 10fr;
+  grid-template-areas: 
+    "topBar topBar topBar topBar"
+    "sideBar content content content";
+  
+
+}
