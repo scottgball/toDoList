@@ -1,9 +1,9 @@
-const taskFactory = (taskName, taskDescription, taskDueDate, taskImportance, taskCompletedOrNot) => {
+const taskFactory = (taskName, taskDescription, taskDueDate, isTaskUrgent, taskCompletedOrNot) => {
   return {
     taskName,
     taskDescription,
     taskDueDate,
-    taskImportance,
+    isTaskUrgent,
     taskCompletedOrNot,
   };
 };

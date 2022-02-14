@@ -1,10 +1,10 @@
 
-const projectFactory = (projectName, projectDescription, projectDueDate, projectImportance, projectCompletedOrNot) => {
+const projectFactory = (projectName, projectDescription, projectDueDate, isProjectUrgent, projectCompletedOrNot) => {
   return {
     projectName,
     projectDescription,
     projectDueDate,
-    projectImportance,
+    isProjectUrgent,
     projectCompletedOrNot,
   };
 };
