@@ -9,9 +9,17 @@ import { parse, format, differenceInDays } from 'date-fns';
 
 const projectDisplayControl = (function () {
 
+  const addProjectButton = document.querySelector("#addProjectButton");
+  addProjectButton.addEventListener('click', (e) => {
+    projectForm.classList.remove('projectFormHidden');
+    projectForm.classList.add('projectFormDisplayed');
+  });
+
   const projectForm = document.querySelector('#projectForm');
   projectForm.onsubmit = () => {
     createNewProject();
+    projectForm.classList.remove('projectFormDisplayed');
+    projectForm.classList.add('projectFormHidden');
   };
 
   let projectUrgency = 'Very Urgent';
@@ -35,17 +43,51 @@ const projectDisplayControl = (function () {
     project due in ${daysUntilProjectDue} days,
     ${projectUrgency}, 
     Project Incomplete`;
+    const addTaskButton = document.createElement('button');
+    addTaskButton.textContent = 'Add A Task To This Project';
+    addTaskButton.classList.add('addTaskButton');
+    newProjectCard.appendChild(addTaskButton);
+
+    addTaskButton.addEventListener('click', (e) => {
+      const taskForm = document.querySelector('#taskForm');
+      taskForm.classList.remove('taskFormHidden');
+      taskForm.classList.add('taskFormDisplayed');
+    });
+
+    // const addTaskButtons = document.querySelectorAll('.addTaskButton');
+    // addTaskButtons.forEach((button)  => {
+    //  button.addEventListener('click', (e) => {
+    //   const taskForm = document.querySelector('#taskForm');
+    //   taskForm.classList.remove('taskFormHidden');
+    //   taskForm.classList.add('taskFormDisplayed');
+    //     });
+    //   };
+
     sideBar.appendChild(newProjectCard);
     event.preventDefault();
-    
+    // openTaskForm();
   };
 })();
+
+
+
+// const taskButtonActivate = () => {
+
+// };
+
+// const openTaskForm = () => {
+  
+// };
+
+
 
 const taskDisplayControl = (function () {
 
   const taskForm = document.querySelector('#taskForm');
   taskForm.onsubmit = () => {
     createNewTask();
+    taskForm.classList.remove('taskFormDisplayed');
+    taskForm.classList.add('taskFormHidden');
   };
 
   let taskUrgency = `Very Urgent`;
@@ -69,6 +111,7 @@ const taskDisplayControl = (function () {
     Task Incomplete`;
     contentContainer.appendChild(newTaskCard);
     event.preventDefault();
+    
   };
 })();
 

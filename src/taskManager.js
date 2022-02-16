@@ -5,7 +5,6 @@ const taskFactory = (taskName, taskDescription, taskDueDate, isTaskUrgent, taskC
   const getDatesUntilTaskDue = (taskDueDate) => {
     
     const dateString = `${taskDueDate}`;
-    console.log(dateString);
     const parsedDueDate = parse(dateString, 'yyyy-MM-dd', new Date());
     const parsedDueDatePlusOne = add(parsedDueDate, {days: 1});
     const difference = differenceInDays(

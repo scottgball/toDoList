@@ -23,6 +23,24 @@ body {
   grid-template-areas: 
     "topBar topBar topBar topBar"
     "sideBar content content content";
-  
+}
 
+.addClassButton {  /* "ADD PROJECT" BUTTON? */
+
+}
+
+.projectFormHidden {
+  display: none;
+}
+
+.projectFormDisplayed {
+  border: 5px solid yellow;
+}
+
+.taskFormHidden {
+  display: none;
+}
+
+.taskFormDisplayed {
+  border: 5px solid yellow;
 }
