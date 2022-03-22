@@ -1,16 +1,58 @@
+:root {
+  --borderColor: rgb(202, 123, 18);
+  --lead-color: rgb(92, 92, 92);
+  --topBarBackground: rgb(255, 192, 98);
+  --contentBackground: rgb(252, 238, 202);
+  --sideBarBackground: rgb(255, 102, 0);
+}
+
+@font-face {
+  font-family: 'Questa';
+  src: url('./2_questa_slab_regular_25-webfont.woff2') format('woff2'),
+    url('./2_questa_slab_regular_25-webfont.woff') format('woff');
+}
+
 #topBar {
-  border: 5px solid red;
+  border-bottom: 4px solid var(--borderColor);
   grid-area: topBar;
+  background-color: var(--topBarBackground);
+  color: var(--lead-color);
+  font-family: 'Questa';
+  font-size: 36px;
+  font-weight: 900;
+  padding-left: 3%;
+  margin: 0;
+
 }
 
 #sideBar {
-  border: 5px solid blue;
+  border-right: 4px solid var(--borderColor);
   grid-area: sideBar;
+  background-color: var(--sideBarBackground);
+  display: flex;
+  flex-direction: column;
+}
+
+#addProjectButton {  
+  border-radius: 2em;
+  border: 3px solid var(--sideBarBackground);
+  background-color: var(--sideBarBackground);
+  color: var(--contentBackground);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 0.8em;
+  margin: 1em 0;
+}
+
+#addProjectButton:hover {
+    background-color: var(--topBarBackground);
+    border-color: var(--borderColor);
+    color: var(--lead-color);
 }
 
 #content {
-  border: 5px solid Green;
   grid-area: content;
+  background-color: var(--contentBackground);
 }
 
 body {
@@ -18,24 +60,85 @@ body {
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 10fr;
   grid-template-areas: 
-    "topBar topBar topBar topBar"
-    "sideBar content content content";
+    "topBar topBar topBar"
+    "sideBar content content";
 }
 
-.addClassButton {  /* "ADD PROJECT" BUTTON? */
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 1em;
+  padding: 0;
+}
 
+li {
+  list-style-type: none;
+  padding: 0.2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type=text] {
+  font-size: 16px;
+  border-radius: 2em;
+  border: none;
+  margin: 0.5em 0;
+}
+
+input[type=radio] {
+  background-color: var(--contentBackground);
+}
+
+label {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Questa';
+  color: var(--lead-color);
+}
+
+button[type=submit] {
+  background-color: var(--sideBarBackground);
+  border-radius: 2em;
+  color: var(--contentBackground);
+  font-size: 16px;
+  font-weight: 800;
+  border: 3px solid var(--sideBarBackground);
+  padding: 0.8em;
+}
+
+button[type=submit]:hover {
+  background-color: var(--contentBackground);
+  color: var(--lead-color);
+  border: 3px solid var(--borderColor);
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projectTextInput {
+  background-color: var(--contentBackground);
 }
 
 .projectFormHidden {
   display: none;
+  box-sizing: border-box;
 }
 
 .projectFormDisplayed {
-  border: 5px solid yellow;
+  border-radius: 2em;
+  background-color: var(--topBarBackground);
+  box-sizing: border-box;
 }
+
+
 
 .taskFormHidden {
   display: none;
