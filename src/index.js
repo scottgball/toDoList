@@ -41,7 +41,6 @@ const projectDisplayControl = (function () {
   const createNewProject = () => {
     const newProject = projectFactory(document.getElementById('projectName').value, document.getElementById('projectDescription').value, document.getElementById('projectDueDate').value, projectUrgency, document.getElementById('projectCompletedOrNot'));
     projects.push(newProject);
-    console.table(projects);
     const sideBar = document.querySelector('#sideBar');
     const newProjectCard = document.createElement('div');
     newProjectCard.classList.add('newProjectCard')
@@ -60,8 +59,15 @@ const projectDisplayControl = (function () {
     viewTasksButton.textContent = `View Tasks`;
     viewTasksButton.classList.add('addTaskButton');
     newProjectCard.appendChild(viewTasksButton);
+
+    const contentContainer = document.querySelector('#content');
+
     const taskForm = document.querySelector('#taskForm');
+
     addTaskButton.addEventListener('click', (e) => {
+      clearContentContainer();
+      displayTasks();
+      contentContainer.appendChild(taskForm);
       taskForm.classList.remove('taskFormHidden');
       taskForm.classList.add('taskFormDisplayed');
       projectIndex = taskButtons.indexOf(addTaskButton);
@@ -97,10 +103,10 @@ const projectDisplayControl = (function () {
       contentContainer.appendChild(newTaskCard);
       projects[projectIndex].addTaskToProject(newTask);
       event.preventDefault();
-      console.table(projects);
     };
 
-    const contentContainer = document.querySelector('#content');
+    
+
     viewTasksButton.addEventListener('click', (e) => {
       clearContentContainer();
       displayTasks();
@@ -114,7 +120,6 @@ const projectDisplayControl = (function () {
 
     const displayTasks = () => {
       newProject.tasks.forEach((task) => {
-        console.log(task);
         const newTaskCard = document.createElement('div');
         newTaskCard.classList.add('newTaskCard');
         const daysUntilTaskDue = task.getDatesUntilTaskDue(task.taskDueDate);
@@ -125,7 +130,6 @@ const projectDisplayControl = (function () {
         Task Incomplete`;
         contentContainer.appendChild(newTaskCard);
       });
-      // contentContainer.appendChild(newTaskCard)
     };
     
     sideBar.appendChild(newProjectCard);
