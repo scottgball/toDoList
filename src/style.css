@@ -1,5 +1,5 @@
 :root {
-  --borderColor: rgb(202, 123, 18);
+  --borderColor: rgb(172, 104, 15);
   --lead-color: rgb(92, 92, 92);
   --topBarBackground: rgb(255, 192, 98);
   --contentBackground: rgb(252, 238, 202);
@@ -85,9 +85,18 @@ li {
 
 input[type=text] {
   font-size: 16px;
+  color: var(--borderColor);
+  font-weight: 800;
   border-radius: 2em;
   border: none;
+  outline: none;
   margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+input[type=text]:focus {
+  box-shadow: 0px 0px 15px rgb(138, 104, 53);
+  color: var(--borderColor);
 }
 
 input[type=radio] {
@@ -145,5 +154,51 @@ button[type=submit]:hover {
 }
 
 .taskFormDisplayed {
-  border: 5px solid yellow;
+  border: none;
+
+}
+
+.newProjectCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--topBarBackground);
+  border-radius: 2em;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Questa';
+  color: var(--lead-color);
+  padding: 1em;
+  margin: 0.5em;
+}
+
+.addTaskButton {
+  border-radius: 2em;
+  border: 3px solid var(--sideBarBackground);
+  background-color: var(--sideBarBackground);
+  color: var(--contentBackground);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 0.4em;
+  margin: 1em 0;
+}
+
+.addTaskButton:hover {
+    background-color: var(--contentBackground);
+    border-color: var(--borderColor);
+    color: var(--lead-color);
+}
+
+.newTaskCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--topBarBackground);
+  border-radius: 2em;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Questa';
+  color: var(--lead-color);
+  padding: 1em;
+  margin: 0.5em;
 }
