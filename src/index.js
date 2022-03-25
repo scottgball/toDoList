@@ -90,20 +90,38 @@ const projectDisplayControl = (function () {
     });
     
     const createNewTask = () => {
-      const newTask = taskFactory(document.getElementById('taskName').value, document.getElementById('taskDescription').value, document.getElementById('taskDueDate').value, taskUrgency, document.getElementById('taskCompletedOrNot'));
+      let taskStatus = `Task Incomplete`;
+      const newTask = taskFactory(document.getElementById('taskName').value, document.getElementById('taskDescription').value, document.getElementById('taskDueDate').value, taskUrgency, taskStatus);
       const contentContainer = document.querySelector('#content');
       const newTaskCard = document.createElement('div');
       newTaskCard.classList.add('newTaskCard');
       const daysUntilTaskDue = newTask.getDatesUntilTaskDue(newTask.taskDueDate);
-      newTaskCard.textContent = `${newTask.taskName},
-      ${newTask.taskDescription}, 
-      due in ${daysUntilTaskDue} days, 
-      ${taskUrgency}, 
-      Task Incomplete`;
+      const displayTaskInfo = () => {
+        newTaskCard.textContent = `${newTask.taskName},
+        ${newTask.taskDescription}, 
+        due in ${daysUntilTaskDue} days, 
+        ${taskUrgency}, 
+        ${newTask.taskStatus}`;
+      };
+      displayTaskInfo();
+      const taskCompleteButton = document.createElement('button');
+      newTaskCard.appendChild(taskCompleteButton);
+      taskCompleteButton.textContent = `Task Completed?`;
+      taskCompleteButton.addEventListener('click', (e) => {
+        if (newTask.taskStatus === `Task Incomplete`) {
+          newTask.taskStatus = `Completed`;
+        } else {
+          newTask.taskStatus = `Task Incomplete`
+        };        
+        displayTaskInfo();
+        newTaskCard.appendChild(taskCompleteButton);
+      });
       contentContainer.appendChild(newTaskCard);
       projects[projectIndex].addTaskToProject(newTask);
       event.preventDefault();
     };
+
+    
 
     
 
@@ -123,11 +141,27 @@ const projectDisplayControl = (function () {
         const newTaskCard = document.createElement('div');
         newTaskCard.classList.add('newTaskCard');
         const daysUntilTaskDue = task.getDatesUntilTaskDue(task.taskDueDate);
+        // let taskStatus = `Task Incomplete`;
+      const displayTaskInfo = () => {
         newTaskCard.textContent = `${task.taskName},
         ${task.taskDescription}, 
         due in ${daysUntilTaskDue} days, 
         ${taskUrgency}, 
-        Task Incomplete`;
+        ${task.taskStatus}`;
+      };
+      displayTaskInfo();
+      const taskCompleteButton = document.createElement('button');
+      newTaskCard.appendChild(taskCompleteButton);
+      taskCompleteButton.textContent = `Task Completed?`;
+      taskCompleteButton.addEventListener('click', (e) => {
+        if (task.taskStatus === `Task Incomplete`) {
+          task.taskStatus = `Completed`;
+        } else {
+          task.taskStatus = `Task Incomplete`
+        };        
+        displayTaskInfo();
+        newTaskCard.appendChild(taskCompleteButton);
+      });
         contentContainer.appendChild(newTaskCard);
       });
     };

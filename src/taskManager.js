@@ -1,6 +1,6 @@
 import { parse, add, differenceInDays } from 'date-fns';
 
-const taskFactory = (taskName, taskDescription, taskDueDate, isTaskUrgent, taskCompletedOrNot) => {
+const taskFactory = (taskName, taskDescription, taskDueDate, isTaskUrgent, taskStatus) => {
   
   const getDatesUntilTaskDue = (taskDueDate) => {
     
@@ -20,7 +20,7 @@ const taskFactory = (taskName, taskDescription, taskDueDate, isTaskUrgent, taskC
     taskDescription,
     taskDueDate,
     isTaskUrgent,
-    taskCompletedOrNot,
+    taskStatus,
     getDatesUntilTaskDue
   };
 };
