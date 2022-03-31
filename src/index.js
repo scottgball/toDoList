@@ -24,6 +24,7 @@ const projectDisplayControl = (function () {
     createNewProject();
     projectForm.classList.remove('projectFormDisplayed');
     projectForm.classList.add('projectFormHidden');
+   
   };
 
   let projectUrgency = 'Very Urgent';
@@ -40,7 +41,10 @@ const projectDisplayControl = (function () {
 
   const createNewProject = () => {
     const newProject = projectFactory(document.getElementById('projectName').value, document.getElementById('projectDescription').value, document.getElementById('projectDueDate').value, projectUrgency, document.getElementById('projectCompletedOrNot'));
+    event.preventDefault();
     projects.push(newProject);
+    console.table(projects);
+    // console.log(taskForm);
     const sideBar = document.querySelector('#sideBar');
     const newProjectCard = document.createElement('div');
     newProjectCard.classList.add('newProjectCard')
@@ -67,13 +71,15 @@ const projectDisplayControl = (function () {
     addTaskButton.addEventListener('click', (e) => {
       clearContentContainer();
       displayTasks();
-      contentContainer.appendChild(taskForm);
+      // contentContainer.appendChild(taskForm);
       taskForm.classList.remove('taskFormHidden');
       taskForm.classList.add('taskFormDisplayed');
       projectIndex = taskButtons.indexOf(addTaskButton);
     });
+
     
     taskForm.onsubmit = () => {
+      // console.table(newProject.tasks)
       createNewTask();
       taskForm.classList.remove('taskFormDisplayed');
       taskForm.classList.add('taskFormHidden');
@@ -103,6 +109,7 @@ const projectDisplayControl = (function () {
         ${taskUrgency}, 
         ${newTask.taskStatus}`;
       };
+
       displayTaskInfo();
       const taskCompleteButton = document.createElement('button');
       newTaskCard.appendChild(taskCompleteButton);
@@ -113,27 +120,42 @@ const projectDisplayControl = (function () {
         } else {
           newTask.taskStatus = `Task Incomplete`
         };        
-        displayTaskInfo();
-        newTaskCard.appendChild(taskCompleteButton);
+        console.log('LET ME DELETE TASK!');
+        clearContentContainer();
+        displayTasks();
+        // displayTaskInfo();
+        // newTaskCard.appendChild(taskCompleteButton);
+        // newTaskCard.appendChild(deleteTaskButton);
+      });
+      
+      const deleteTaskButton = document.createElement('button');
+      deleteTaskButton.textContent = `X`;
+      newTaskCard.appendChild(deleteTaskButton);
+      deleteTaskButton.addEventListener('click', (e) => {
+        const index = newProject.tasks.indexOf(newTask);
+        if (index > -1) {
+          newProject.tasks.splice(index, 1);
+        };
+        clearContentContainer(); 
+        displayTasks();
       });
       contentContainer.appendChild(newTaskCard);
       projects[projectIndex].addTaskToProject(newTask);
       event.preventDefault();
     };
 
-    
-
-    
-
     viewTasksButton.addEventListener('click', (e) => {
       clearContentContainer();
       displayTasks();
     });
 
+    // const taskCards = document.querySelectorAll('.newTaskCard');
+
     const clearContentContainer = () => {
       while (contentContainer.firstChild) {
         contentContainer.removeChild(contentContainer.lastChild);
-      }
+      };
+      contentContainer.appendChild(taskForm);
     };
 
     const displayTasks = () => {
@@ -150,17 +172,34 @@ const projectDisplayControl = (function () {
         ${task.taskStatus}`;
       };
       displayTaskInfo();
+
       const taskCompleteButton = document.createElement('button');
       newTaskCard.appendChild(taskCompleteButton);
       taskCompleteButton.textContent = `Task Completed?`;
       taskCompleteButton.addEventListener('click', (e) => {
         if (task.taskStatus === `Task Incomplete`) {
           task.taskStatus = `Completed`;
+          newTaskCard.appendChild(deleteTaskButton);
         } else {
-          task.taskStatus = `Task Incomplete`
-        };        
-        displayTaskInfo();
-        newTaskCard.appendChild(taskCompleteButton);
+          task.taskStatus = `Task Incomplete`;
+        };     
+        clearContentContainer(); 
+        displayTasks();
+        // displayTaskInfo();
+        // newTaskCard.appendChild(taskCompleteButton);
+        // newTaskCard.appendChild(deleteTaskButton);
+      });
+
+      const deleteTaskButton = document.createElement('button');
+      deleteTaskButton.textContent = `X`;
+      newTaskCard.appendChild(deleteTaskButton);
+      deleteTaskButton.addEventListener('click', (e) => {
+        const index = newProject.tasks.indexOf(task);
+        if (index > -1) {
+          newProject.tasks.splice(index, 1);
+        };
+        clearContentContainer();
+        displayTasks();
       });
         contentContainer.appendChild(newTaskCard);
       });
@@ -169,6 +208,8 @@ const projectDisplayControl = (function () {
     sideBar.appendChild(newProjectCard);
     
     event.preventDefault();
+
+    // CAN'T ADD NEW PROJECT AFTER DELETING A TASK, FIX THIS!!!
     
   };
   
