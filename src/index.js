@@ -113,6 +113,7 @@ const projectDisplayControl = (function () {
       displayTaskInfo();
       const taskCompleteButton = document.createElement('button');
       newTaskCard.appendChild(taskCompleteButton);
+      taskCompleteButton.classList.add('taskCompleteButton');
       taskCompleteButton.textContent = `Task Completed?`;
       taskCompleteButton.addEventListener('click', (e) => {
         if (newTask.taskStatus === `Task Incomplete`) {
@@ -129,7 +130,8 @@ const projectDisplayControl = (function () {
       });
       
       const deleteTaskButton = document.createElement('button');
-      deleteTaskButton.textContent = `X`;
+      deleteTaskButton.textContent = `Delete Task`;
+      deleteTaskButton.classList.add('taskDeleteButton');
       newTaskCard.appendChild(deleteTaskButton);
       deleteTaskButton.addEventListener('click', (e) => {
         const index = newProject.tasks.indexOf(newTask);
@@ -159,6 +161,10 @@ const projectDisplayControl = (function () {
     };
 
     const displayTasks = () => {
+      const projectName = document.createElement('h1');
+      projectName.classList.add('contentHeader');
+      projectName.textContent = `${newProject.projectName}`;
+      contentContainer.appendChild(projectName);
       newProject.tasks.forEach((task) => {
         const newTaskCard = document.createElement('div');
         newTaskCard.classList.add('newTaskCard');
@@ -175,6 +181,7 @@ const projectDisplayControl = (function () {
 
       const taskCompleteButton = document.createElement('button');
       newTaskCard.appendChild(taskCompleteButton);
+      taskCompleteButton.classList.add('taskCompleteButton');
       taskCompleteButton.textContent = `Task Completed?`;
       taskCompleteButton.addEventListener('click', (e) => {
         if (task.taskStatus === `Task Incomplete`) {
@@ -191,7 +198,8 @@ const projectDisplayControl = (function () {
       });
 
       const deleteTaskButton = document.createElement('button');
-      deleteTaskButton.textContent = `X`;
+      deleteTaskButton.textContent = `Delete Task`;
+      deleteTaskButton.classList.add('taskDeleteButton');
       newTaskCard.appendChild(deleteTaskButton);
       deleteTaskButton.addEventListener('click', (e) => {
         const index = newProject.tasks.indexOf(task);

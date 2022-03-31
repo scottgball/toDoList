@@ -53,6 +53,10 @@
 #content {
   grid-area: content;
   background-color: var(--contentBackground);
+  font-family: 'Questa';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
@@ -202,3 +206,43 @@ button[type=submit]:hover {
   padding: 1em;
   margin: 0.5em;
 }
+
+.contentHeader {
+  color: var(--borderColor);
+  border-bottom: 3px solid var(--borderColor);
+}
+
+.taskCompleteButton {
+    border-radius: 2em;
+    border: 2px solid var(--sideBarBackground);
+    background-color: var(--sideBarBackground);
+    color: var(--contentBackground);
+    font-weight: 800;
+    font-size: 12px;
+    padding: 0.4em;
+    margin: 0.2em 0;
+}
+
+.taskCompleteButton:hover {
+  background-color: var(--contentBackground);
+  border-color: var(--borderColor);
+  color: var(--lead-color);
+}
+
+.taskDeleteButton {
+      border-radius: 2em;
+      border: 2px solid var(--sideBarBackground);
+      background-color: var(--sideBarBackground);
+      color: var(--contentBackground);
+      font-weight: 800;
+      font-size: 12px;
+      padding: 0.4em;
+      margin: 0.2em 0;
+}
+
+.taskDeleteButton:hover {
+  background-color: var(--contentBackground);
+  border-color: var(--borderColor);
+  color: var(--lead-color);
+}
+  
